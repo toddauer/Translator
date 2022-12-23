@@ -1,0 +1,25 @@
+'''
+This file is the same as EnglishToSpanish except this one can open word documents to translate text.
+The translated text is then saved to a different text document called Translated2
+'''
+
+
+import docx2txt
+ 
+from googletrans import Translator, constants 
+from pprint import pprint
+
+# init the Google API translator 
+translator = Translator()
+
+# open file to be translated
+result = docx2txt.process("Test.docx")
+file2 = open("Translated2.txt", "w", encoding="utf8")
+# loop through lines of text in file
+  
+translation = translator.translate(result, dest="es")
+file2.write(f"{translation.text}\n")
+
+
+file2.close()
+print("Complete...")
