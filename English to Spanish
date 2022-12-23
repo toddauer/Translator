@@ -1,0 +1,22 @@
+'''
+This program will convert plain text in a .txt file named "Translate" to a new file called "Translated".
+Benefit of this program is that it goes around the 3k character limit on Google Translate and it saves the output to a document. 
+Prevelant issue: It can be SLOW based on how many lines of text you are trying to translate.
+'''
+
+from googletrans import Translator, constants 
+from pprint import pprint
+
+# init the Google API translator 
+translator = Translator()
+
+# open file to be translated
+file1 = open("Translate.txt", "r", encoding="utf8")
+file2 = open("Translated.txt", "w", encoding="utf8")
+# loop through lines of text in file
+for i in file1:    
+    translation = translator.translate(i, dest="es")
+    file2.write(f"{translation.text}\n")
+print("Complete...")
+file1.close()
+file2.close()
