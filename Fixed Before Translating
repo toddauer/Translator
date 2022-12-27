@@ -1,0 +1,35 @@
+from googletrans import Translator, constants 
+from pprint import pprint
+from ENESdictionary import *
+# init the Google API translator 
+translator = Translator()
+
+# open file to be translated
+TranslateFile = open("translate.txt", "r", encoding="utf8")
+
+# Open file to write corrections to before translation
+FixedFile = open("fixed.txt", "w")
+
+# Open file to write translation to
+TranslatedFile = open("translated.txt", "w", encoding="utf8")
+
+# Fix the translate file before translating
+my_str = TranslateFile.read()
+my_dict = dictionary
+
+for key, value in my_dict.items():
+    my_str = my_str.replace(key, value)
+FixedFile.write(my_str)
+FixedFile.close()
+# Reopen the fixed file as read
+
+print("Writting to file...", "\n")
+FixedFile = open("fixed.txt", "r", encoding="utf8")
+# Loop through lines and translate
+for i in FixedFile:    
+    translation = translator.translate(i, dest="es")
+    TranslatedFile.write(f"{translation.text}\n")
+print("Complete! You may now open translated.txt", "\n")
+TranslateFile.close()
+TranslatedFile.close()
+FixedFile.close()
