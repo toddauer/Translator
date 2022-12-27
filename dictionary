@@ -1,0 +1,19 @@
+dictionary = {
+    'Upright':'Uprights',
+    'upright.':'uprights.',
+    'Slide':'Slider',
+    'slide':'slider',
+    'slide.':'slider.',
+}
+
+file1 = open("filedictionaryupdate.txt", "r", encoding="utf8")
+test_str = file1.read()
+
+
+
+res = " ".join(dictionary.get(i, i) for i in test_str.split())
+
+for i in file1:
+    print(res)
+
+file1.close()
