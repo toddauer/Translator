@@ -1,29 +1,26 @@
 from googletrans import Translator, constants 
 from pprint import pprint
 from ENESdictionary import *
+import time
 # init the Google API translator 
 translator = Translator()
 
 print("Step 1 of 3: Opening Document to be Translated...")
-# open file to be translated
+time.sleep(2)
+# Step 1 of 3: Open translate file, open file to write corrections to, and open file to write translated text to.
 TranslateFile = open("translate.txt", "r", encoding="utf8")
-
-# Open file to write corrections to before translation
 FixedFile = open("fixed.txt", "w", encoding="utf8")
-
-# Open file to write translation to
 TranslatedFile = open("translated.txt", "w", encoding="utf8")
 
-# Fix the translate file before translating
+# Step 2 of 3: Use the spanish dictionary python file to fix language before translation.
+print("Step 2 of 3: Fixing Text Before Translation...")
+time.sleep(2)
 my_str = TranslateFile.read()
 my_dict = dictionary
-print("Step 2 of 3: Fixing Text Before Translation...")
-
 for key, value in my_dict.items():
     my_str = my_str.replace(key, value)
 FixedFile.write(my_str)
 FixedFile.close()
-# Reopen the fixed file as read
 
 
 FixedFile = open("fixed.txt", "r", encoding="utf8")
