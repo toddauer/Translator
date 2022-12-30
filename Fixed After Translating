@@ -1,0 +1,35 @@
+from googletrans import Translator, constants 
+from pprint import pprint
+from EStoESMexDictionary import *
+import time
+# Initialize the Google API translator 
+translator = Translator()
+
+# Step 1: Open translate file as a read only. Open translated file as a write only.
+print("Opening file to be translated...")
+time.sleep(2)
+TranslateFile = open("translate.txt", "r", encoding="utf8")
+TranslatedFile = open("translated.txt", "w", encoding="utf8")
+
+# Step 2: Read translate file and convert to Spanish. Write translation to translated file.
+print("Translating English to Spanish, please wait....")
+time.sleep(2)
+for i in TranslateFile:    
+    translation = translator.translate(i, dest="es")
+    TranslatedFile.write(f"{translation.text}\n")
+TranslatedFile.close()
+
+# Step 3: Read translated file and write corrections to fixed file.
+print("Fixing translation issues, almost done...")
+time.sleep(2)
+TranslatedFile = open("translated.txt", "r", encoding="utf8")
+FixedFile = open("fixed.txt", "w", encoding="utf8")
+my_str = TranslatedFile.read()
+my_dict = dictionary
+for key, value in my_dict.items():
+    my_str = my_str.replace(key, value)
+FixedFile.write(my_str)
+FixedFile.close()
+TranslateFile.close()
+print("Complete! You can now open the fixed.txt file.")
+
