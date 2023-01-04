@@ -32,4 +32,3 @@ FixedFile.write(my_str)
 FixedFile.close()
 TranslateFile.close()
 print("Complete! You can now open the fixed.txt file.")
-
